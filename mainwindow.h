@@ -15,7 +15,24 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+private slots:
+    void on_loadButton_clicked();
+
+    void on_startStopButton_clicked();
+
 private:
     Ui::MainWindow *ui;
+
+    bool fileChosen = false;
+    QString fileName;
+    uint64_t frames;
+
+    QVector<double> *x = nullptr;
+    QVector<double> *y = nullptr;
+
+    bool playingAnimation = false;
+
+    // Worker member function.
+    void worker_thread(void);
 };
 #endif // MAINWINDOW_H
