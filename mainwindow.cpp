@@ -1,3 +1,7 @@
+//
+// Author: Mark Carey (mcarey AT solocre dot net)
+//
+
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QFileDialog>

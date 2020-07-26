@@ -1,6 +1,11 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+//
+// Author: Mark Carey (mcarey AT solocre dot net)
+//
+
+
 #include <QMainWindow>
 
 QT_BEGIN_NAMESPACE
