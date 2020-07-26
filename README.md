@@ -6,4 +6,7 @@ This project is place under the GNU Public License and is free for all, with no 
 
 This project uses the amazing project QCustomPlot from Emanuel Eichhammer.
 
+# Dependancies
+You will need libsndfile in order to compile and use this project.
+
 
