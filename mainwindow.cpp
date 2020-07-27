@@ -70,7 +70,7 @@ void MainWindow::on_loadButton_clicked()
     this->frames = file.frames();
 
     // Raw frame allocation for the libsndfile.
-    int16_t *rawframes = new int16_t[frames];
+    int16_t *rawframes = new int16_t[frames*file.channels()];
 
     // Free if we are already allocated
     if (this->x != nullptr)
@@ -85,14 +85,14 @@ void MainWindow::on_loadButton_clicked()
     }
 
     // the vectors we will use to animate with.
-    x = new QVector<double>(frames/2);
-    y = new QVector<double>(frames/2);
+    x = new QVector<double>(frames);
+    y = new QVector<double>(frames);
 
     // read into the raw frames.
-    file.read(rawframes, frames);
+    file.read(rawframes, frames*file.channels());
 
     // process the raw stream into the x, y pair sets.
-    for (uint64_t i=0; i<frames/2; i++)
+    for (uint64_t i=0; i<frames; i++)
     {
       (*x)[i] = (double) rawframes[(i<<1)];
       (*y)[i] = (double) rawframes[(i<<1)+1];
@@ -132,7 +132,7 @@ void MainWindow::worker_thread(void)
     // Setup prograss bar.
     ui->progressBar->setRange(0, ticks);
 
-    int one_step_frames = (frames/2)/ticks;
+    int one_step_frames = (frames)/ticks;
     for(int tick = 0; tick < ticks; tick++)
     {
         // Check if we need to stop playing.
