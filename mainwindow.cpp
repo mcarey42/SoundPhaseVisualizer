@@ -70,7 +70,7 @@ void MainWindow::on_loadButton_clicked()
     this->frames = file.frames();
 
     // Raw frame allocation for the libsndfile.
-    int16_t *rawframes = new int16_t[frames*file.channels()];
+    rawframes = new int16_t[frames*file.channels()];
 
     // Free if we are already allocated
     if (this->x != nullptr)
@@ -154,6 +154,11 @@ void MainWindow::worker_thread(void)
         ui->customPlot->clearItems();
         ui->customPlot->graph(0)->setData(x1, y1);
         ui->customPlot->replot();
+
+        // If you want a billion pngs, turn this on.
+        if(ui->pngCheckBox->checkState() == Qt::Checked)
+            ui->customPlot->savePng(QStringLiteral("frame_%1.png").arg(tick, 5, 10, QLatin1Char('0')));
+
         usleep(usecDelay);    //  usec delay.
     }
 

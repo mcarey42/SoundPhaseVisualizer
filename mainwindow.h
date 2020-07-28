@@ -31,6 +31,7 @@ private:
     bool fileChosen = false;
     QString fileName;
     uint64_t frames;
+    int16_t *rawframes = nullptr;
 
     QVector<double> *x = nullptr;
     QVector<double> *y = nullptr;
